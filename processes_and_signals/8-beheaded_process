@@ -4,6 +4,6 @@
 PID=$(pgrep 7-highlander)
 
 if [ -n "$PID" ]; then
-  kill $PID
+  kill "$PID"
 fi
 
