@@ -1,13 +1,24 @@
 #!/usr/bin/env bash
 #This script creates the file /var/run/myscript.pid containing its PID using the echo command.
 
-# Create the PID file
+# Create the file /var/run/myscript.pid containing its PID
 echo $$ > /var/run/myscript.pid
 
-# Define the signal handlers
-trap 'echo "Y U no love me?!"' SIGINT
-trap 'echo "I hate the kill command"' SIGTERM
-trap 'rm /var/run/myscript.pid; exit' SIGQUIT SIGTERM
+# Function to handle SIGTERM and SIGQUIT signals
+terminate() {
+    echo "I hate the kill command"
+    rm /var/run/myscript.pid
+    exit 0
+}
+
+# Function to handle SIGINT signal
+interrupt() {
+    echo "Y U no love me?!"
+}
+
+# Trap SIGTERM, SIGQUIT, and SIGINT signals
+trap terminate SIGTERM SIGQUIT
+trap interrupt SIGINT
 
 # Display "To infinity and beyond" indefinitely
 while true; do
