@@ -1,0 +1,3 @@
+# alu shell
+
+## shell permissions
