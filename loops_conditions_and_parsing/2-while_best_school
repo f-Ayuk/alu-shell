@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash/env bash
 # This script displays Best School 10 times
 counter=0
 while [ $counter -lt 10 ]; do
